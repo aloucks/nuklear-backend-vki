@@ -1,5 +1,9 @@
-# nuklear-backend-wgpurs
+# nuklear-backend-vki
 
-[![Latest Version](https://img.shields.io/crates/v/nuklear-backend-wgpurs.svg)](https://crates.io/crates/nuklear-backend-wgpurs)
+A VKI drawing backend for the
+[Rust bindings](https://github.com/snuk182/nuklear-rust) for the
+[Nuklear](https://github.com/vurtun/nuklear) 2D immediate GUI library.
 
-A wgpu-rs drawing backend for the [Rust bindings](https://github.com/snuk182/nuklear-rust) for the [Nuklear](https://github.com/vurtun/nuklear) 2D immediate GUI library.
+## Example
+
+[nuclear-test-vki](https://github.com/aloucks/nuklear-test)
