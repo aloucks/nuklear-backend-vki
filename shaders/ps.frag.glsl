@@ -1,5 +1,5 @@
 #version 450
-precision mediump float;
+//precision mediump float;
 
 layout(set = 1, binding = 0) uniform texture2D Texture;
 layout(set = 1, binding = 1) uniform sampler Sampler;

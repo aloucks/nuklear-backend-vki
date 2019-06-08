@@ -1,28 +1,24 @@
 [package]
-name = "nuklear-backend-wgpurs"
+name = "nuklear-backend-vki"
 version = "0.1.0"
-authors = ["Serhii Plyhun <snuk188@gmail.com>"]
-keywords = ["gui", "interface", "graphics", "gfx", "wgpu-rs"]
-description = "A Wgpu-rs drawing backend for Rust wrapper for Nuklear 2D GUI library"
+authors = ["Serhii Plyhun <snuk188@gmail.com>", "Aaron Loucks <aloucks@cofront.net>"]
+keywords = ["gui", "interface", "graphics", "vulkan", "vki"]
+description = "A VKI drawing backend for Rust wrapper for Nuklear 2D GUI library"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/snuk182/nuklear-backend-wgpurs.git"
-homepage = "https://github.com/snuk182/nuklear-backend-wgpurs"
+repository = "https://github.com/aloucks/nuklear-backend-vki.git"
+homepage = "https://github.com/aloucks/nuklear-backend-vki"
 edition = "2018"
 
 [lib]
-name = "nuklear_backend_wgpurs"
+name = "nuklear_backend_vki"
 path = "src/lib.rs"
 
 [dependencies]
 log = "~0.3"
-wgpu = "~0.2"
+vki = { version = "0.1", default-features = false, git = "https://github.com/aloucks/vki.git", rev = "ccd2a0e" }
 nuklear-rust = "~0.6"
-glsl-to-spirv = "~0.1"
+#glsl-to-spirv = "~0.1"
 
-[features]
-default = []
-metal = ["wgpu/metal"]
-dx11 = ["wgpu/dx11"]
-dx12 = ["wgpu/dx12"]
-vulkan = ["wgpu/vulkan"]
+[patch.crates-io]
+ash = { git = "https://github.com/MaikKlein/ash.git", rev = "6d7e4bf" }
