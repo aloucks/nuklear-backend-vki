@@ -16,9 +16,9 @@ path = "src/lib.rs"
 
 [dependencies]
 log = "~0.3"
-vki = { version = "0.1", default-features = false, git = "https://github.com/aloucks/vki.git", rev = "ccd2a0e" }
+vki = { version = "0.1", default-features = false, git = "https://github.com/aloucks/vki.git", rev = "1e045f0" }
 nuklear-rust = "~0.6"
 #glsl-to-spirv = "~0.1"
 
-[patch.crates-io]
-ash = { git = "https://github.com/MaikKlein/ash.git", rev = "6d7e4bf" }
+#[patch.crates-io]
+#ash = { git = "https://github.com/MaikKlein/ash.git", rev = "6d7e4bf" }
