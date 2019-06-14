@@ -9,6 +9,8 @@ use std::{
 
 use vki::*;
 
+pub use vki;
+
 
 pub const TEXTURE_FORMAT: TextureFormat = TextureFormat::B8G8R8A8Unorm;
 
@@ -59,7 +61,7 @@ impl VkiTexture {
         let bytes = image.len();
         let usage = BufferUsageFlags::TRANSFER_SRC | BufferUsageFlags::MAP_WRITE;
         let buffer = device.create_buffer_mapped(BufferDescriptor { size: bytes, usage })?;
-        buffer.write(0, image)?;
+        buffer.copy_from_slice(image)?;
 
         let mut encoder = device.create_command_encoder()?;
 
@@ -68,7 +70,7 @@ impl VkiTexture {
             BufferCopyView {
                 buffer: &buffer.unmap(),
                 offset: 0,
-                row_pitch: width, // pixel_size * width,
+                row_length: width, // row_pitch: pixel_size * width,
                 image_height: height,
             },
             TextureCopyView {
@@ -259,8 +261,8 @@ impl Drawer {
         let ubf = device.create_buffer_mapped(BufferDescriptor { size: ubf_size, usage: BufferUsageFlags::UNIFORM | BufferUsageFlags::TRANSFER_DST | BufferUsageFlags::TRANSFER_SRC | BufferUsageFlags::MAP_WRITE})?;
 
         {
-            let mut vbf_data = vbf.write_data(0, self.vsz)?;
-            let mut ebf_data = ebf.write_data(0, self.esz)?;
+            let mut vbf_data = vbf.write(0, self.vsz)?;
+            let mut ebf_data = ebf.write(0, self.esz)?;
 
             let mut vbuf = NkBuffer::with_fixed(&mut *vbf_data);
             let mut ebuf = NkBuffer::with_fixed(&mut *ebf_data);
@@ -277,7 +279,7 @@ impl Drawer {
 //        let ebf = ebf.finish();
 //        let ubf = ubf.fill_from_slice(as_typed_slice(&ortho));
 
-        ubf.write(0,as_typed_slice(&ortho))?;
+        ubf.copy_from_slice(as_typed_slice(&ortho))?;
 
         encoder.copy_buffer_to_buffer(&ubf.unmap(), 0, &self.ubf, 0, ubf_size as _);
 

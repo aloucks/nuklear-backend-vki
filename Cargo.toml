@@ -16,7 +16,7 @@ path = "src/lib.rs"
 
 [dependencies]
 log = "~0.3"
-vki = { version = "0.1", default-features = false, git = "https://github.com/aloucks/vki.git", rev = "328d052" }
+vki = { version = "0.1", default-features = false, git = "https://github.com/aloucks/vki.git", rev = "5f35a51" }
 nuklear-rust = "~0.6"
 #glsl-to-spirv = "~0.1"
 
